@@ -1,7 +1,1 @@
-import axios from "axios";
-
-export function login(){
-    return(dispatch)=>{
-        return axios
-    }
-}
+export * from './user.actions';

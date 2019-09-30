@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+// import  { Task } from '../tasks/';
 const styles = theme => ({
      root: {
         flexGrow: 1,

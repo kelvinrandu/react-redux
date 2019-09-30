@@ -1,3 +1,7 @@
-import { combineReducers } from '../../../../../../../.cache/typescript/2.9/node_modules/redux';
-const rootReducer = combineReducers({ });
+import { combineReducers } from 'redux';
+import { authentication } from './auth.reducer';
+
+const rootReducer = combineReducers({
+    authentication
+});
 export default rootReducer;
