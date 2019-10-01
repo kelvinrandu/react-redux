@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-// import Grid from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import { connect } from 'react-redux';
 import { login } from '../../actions';
 import { history } from '../../helpers';
-import { connect } from 'react-redux';
+
 import { withRouter } from 'react-router-dom';
 
 const styles = theme => ({
@@ -43,54 +44,36 @@ const styles = theme => ({
     },
 });
 
+class Login extends Component {
+     constructor(props){
+         super(props);
+         this.state = {
+             username: '',
+             password: '',
+             showPassword: false,
+         }
+     }
+     componentDidMount() {
+         if(localStorage.getItem('auth')){
+             history.push('/home');
+         }
+     }
+     handleChange = prop => event => {
+         this.setState({ [prop]: event.target.value });
+     };
 
-
-class LoginForm extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            phone: '',
-            password: '',
-            identifier: '',
-            errors: '',
-            showPassword: false,
-            isLoading: false
-        };
-
-        this.onSubmit = this.onSubmit.bind(this);
-        this.onChange = this.onChange.bind(this);
-    }
-    onSubmit(e){
-        e.preventDefault();
-        this.setState({ errors: {},isLoading: true });
-        this.props.login(this.state).then(
-            (res) => this.context.router.push(),
-            (err) => this.setState({ errors: err.data.errors, isLoading: false})
-        );
-    }
-    onChange(e){
-        this.setState({ [e.target.name]: e.target.value });
-    }
-    componentDidMount() {
-        if(localStorage.getItem('auth')){
-            history.push('/home');
-        }
-    }
-
-    render() {
-        const { classes } = this.props;
-        const { errors, identifier, password, isLoading } = this.state;
-        return (
-            <div className="login-margin">
- <Paper className={classes.paper}>
+     render() {
+         const { classes } = this.props;
+         return (
+             <div className="login-margin">
+  
+                       <Paper className={classes.paper}>
                            <div>
-                              <form onSubmit = {this.onSubmit}> 
                                <TextField
-                                label="phone"
-                                value={identifier}
-                                error={errors.identifier}
+                                label="Username"
+                                value={this.state.username}
                                 className={classes.textField}
-                                onChange = {this.onChange}
+                                onChange = {this.handleChange('username')}
                                />
                                <br/><br/>
                                <TextField
@@ -98,29 +81,32 @@ class LoginForm extends Component {
                                 autoComplete="current-password"
                                 type={this.state.showPassword ? 'text' : 'password'}
                                 className={classes.textField}
-                                value={identifier}
-                                onChange={this.onChange}
+                                value={this.state.password}
+                                onChange={this.handleChange('password')}
                               />
                               <br/><br/>
-                              <Button variant="contained" color="primary" className={classes.button} disabled= {isLoading} onClick={(event)=>{this.login()}}>Login</Button>
-                              </form> 
+                              <Button variant="contained" color="primary" className={classes.button} onClick={(event)=>{this.login()}}>Login</Button>
                           </div>
                       </Paper>
-           </div>
-       );
-   }
+               
+                 <Grid item xs={3}>
+                 </Grid>
+   
+            </div>
+        );
+    }
 }
-LoginForm.propTypes = {
-    login: React.PropTypes.func.isRequired
-  }
-  
-  const mapStateToProps = (state) =>{
-    const { loggingIn } = state.authentication;
-    return {
-       loggingIn
-    };
+Login.propTypes = {
+     classes: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) =>{
+     const { loggingIn } = state.authentication;
+     return {
+        loggingIn
+     };
 }
 const connectedLoginPage = withRouter(connect(mapStateToProps, null, null, {
-    pure: false
-})(withStyles(styles)(LoginForm)));
+     pure: false
+})(withStyles(styles)(Login)));
 export { connectedLoginPage as Login };
