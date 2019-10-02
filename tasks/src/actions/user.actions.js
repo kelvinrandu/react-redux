@@ -1,4 +1,9 @@
 import axios from 'axios';
+export const userActions = {
+    login,
+
+};
+
 
 export function login(data){
     return dispatch => {
