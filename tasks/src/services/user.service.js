@@ -1,37 +1,37 @@
 import axios from 'axios';
 import config from '../config/config';
-export const userService = {
-    get,
-    post,
-    put,
-    deleteDetail
-};
-function get(apiEndpoint){
-    return axios.get(config.baseUrl+apiEndpoint).then((response)=>{
-       return response;
-    }).catch((err)=>{
-       console.log(err);
-    })
-}
+import { authHeader } from '../helpers';
 
-function post(apiEndpoint, payload){
-    return axios.post(config.baseUrl+apiEndpoint, payload).then((response)=>{
-        return response;
-    }).catch((err)=>{
-        console.log(err);
-    })
-}
-function put(apiEndpoint, payload){
-    return axios.put(config.baseUrl+apiEndpoint, payload).then((response)=>{
-        return response;
-    }).catch((err)=>{
-        console.log(err);
-    })
-}
-function deleteDetail(apiEndpoint){
-    return axios.delete(config.baseUrl+apiEndpoint).then((response)=>{
-        return response;
-    }).catch((err)=>{
-        console.log(err);
-    })
-}
+export const userService = {
+    login
+
+};
+
+function login(phone, password) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone, password })
+    };
+    return dispatch => {
+        return axios.post('https://kazi.azurewebsites.net/personnel/login',requestOptions);
+    }
+
+
+// function handleResponse(response) {
+//     return response.text().then(text => {
+//         const data = text && JSON.parse(text);
+//         if (!response.ok) {
+//             if (response.status === 401) {
+//                 // auto logout if 401 response returned from api
+              
+//                 console.log('logged in')
+//             }
+
+//             const error = (data && data.message) || response.statusText;
+//             return Promise.reject(error);
+//         }
+
+//         return data;
+//     });
+ }

@@ -1,3 +1,3 @@
 module.exports = {
-    baseUrl: 'https://kazi.azurewebsites.net/'
+    baseUrl: 'https://kazi.azurewebsites.net'
 }
