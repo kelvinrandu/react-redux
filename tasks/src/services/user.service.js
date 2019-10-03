@@ -23,8 +23,11 @@ function post(phone, password){
         'password': password
     }
     
-    return axios.post(config.baseUrl+apiEndpoint, body).then((response)=>{
-        console.log(response);
+    return axios.post(config.baseUrl+apiEndpoint, body).then((response)=>{      
+        const accessToken = response.data.accessToken;
+        localStorage.setItem('accessToken',accessToken);
+        console.log(accessToken);
+        
        return response;
     }).catch((err)=>{
        console.log(err);
