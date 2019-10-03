@@ -5,11 +5,11 @@ import App from './App';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import reducer from './reducers';
+import rootReducer from './rootReducer';
 import * as serviceWorker from './serviceWorker';
 import setAuthorizationToken from './utils/setAuthorizationToken';
 
-const store = createStore(reducer, applyMiddleware(thunk))
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 setAuthorizationToken(localStorage.accessToken)
 

@@ -1,5 +1,6 @@
 import { userService } from '../services';
 import { history } from '../helpers';
+import { SET_CURRENT_USER } from '../constants';
 
 
 export const userActions = {
@@ -29,3 +30,9 @@ function login(phone, password) {
 
 }
 
+export function setCurrentUser(user) {
+    return {
+      type: SET_CURRENT_USER,
+      user
+    };
+  }

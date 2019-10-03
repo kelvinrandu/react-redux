@@ -36,7 +36,7 @@ class Login extends React.Component {
     }
 
     render() {
-        const { loggingIn } = this.props;
+        
         const { phone, password, submitted } = this.state;
         return (
             <div className="col-md-6 col-md-offset-3">
@@ -58,9 +58,7 @@ class Login extends React.Component {
                     </div>
                     <div className="form-group">
                         <button className="btn btn-primary">Login</button>
-                        {loggingIn &&
-                            <div></div>
-                        }
+      
                        
                     </div>
                 </form>
@@ -69,15 +67,11 @@ class Login extends React.Component {
     }
 }
 
-function mapState(state) {
-    const { loggingIn } = state.authentication;
-    return { loggingIn };
-}
 
 const actionCreators = {
     login: userActions.login,
    
 };
 
-const connectedLoginPage = connect(mapState, actionCreators)(Login);
+const connectedLoginPage = connect(null, actionCreators)(Login);
 export { connectedLoginPage as Login };
