@@ -16,7 +16,7 @@ function login(phone, password) {
                 
                 user => { 
                    // dispatch(success(user));
-                    history.push('/');
+                    history.push('/home');
                 },
                 error => {
                     //dispatch(failure(error.toString()));

@@ -1,5 +1,7 @@
 import axios from 'axios';
 import config from '../config/config';
+import setAuthorizationToken from '../utils/setAuthorizationToken';
+import jwt from 'jsonwebtoken';
 
 
 
@@ -26,7 +28,9 @@ function post(phone, password){
     return axios.post(config.baseUrl+apiEndpoint, body).then((response)=>{      
         const accessToken = response.data.accessToken;
         localStorage.setItem('accessToken',accessToken);
-        console.log(accessToken);
+        setAuthorizationToken(accessToken);
+        //for debugging delete before production
+        console.log(jwt.decode(accessToken));
         
        return response;
     }).catch((err)=>{
