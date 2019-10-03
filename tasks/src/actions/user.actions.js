@@ -1,6 +1,6 @@
 import { userService } from '../services';
-import { history } from '../helpers';
 import { SET_CURRENT_USER } from '../constants';
+
 
 
 export const userActions = {
@@ -8,23 +8,15 @@ export const userActions = {
 
 };
 
+
 function login(phone, password) {
     return dispatch => {
       
 
-        userService.post(phone, password)
-            .then(
-                
-                user => { 
-                   // dispatch(success(user));
-                    history.push('/home');
-                },
-                error => {
-                    //dispatch(failure(error.toString()));
-                    console.log(error);
-                    
-                }
-            );
+       return userService.post(phone, password)
+            .then((response)=>{  
+               console.log(response)
+            });
             
     };
 

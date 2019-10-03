@@ -25,14 +25,18 @@ function post(phone, password){
         'password': password
     }
     
-    return axios.post(config.baseUrl+apiEndpoint, body).then((response)=>{      
+    return axios.post(config.baseUrl+apiEndpoint, body).then((response)=>{ 
+        //assign variable to accessToken     
         const accessToken = response.data.accessToken;
+
+        //store token to local storage
         localStorage.setItem('accessToken',accessToken);
         setAuthorizationToken(accessToken);
+
         //for debugging delete before production
-        console.log(jwt.decode(accessToken));
+        const decodedToken = (jwt.decode(accessToken));
         
-       return response;
+       return decodedToken;
     }).catch((err)=>{
        console.log(err);
     })
