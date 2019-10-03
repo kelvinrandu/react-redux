@@ -8,7 +8,8 @@ import thunk from 'redux-thunk';
 import rootReducer from './rootReducer';
 import * as serviceWorker from './serviceWorker';
 import setAuthorizationToken from './utils/setAuthorizationToken';
-
+import { setCurrentUser } from './actions/';
+import jwt from 'jsonwebtoken';
 
 const store = createStore(
     rootReducer,
@@ -18,7 +19,12 @@ const store = createStore(
     )
   );
 
-setAuthorizationToken(localStorage.accessToken)
+  if (localStorage.accessToken) {
+    setAuthorizationToken(localStorage.accessToken)
+    const decodedToken = (jwt.decode(localStorage.accessToken));
+    store.dispatch(setCurrentUser(decodedToken));
+  }
+
 
 ReactDOM.render(
     <Provider store={store}>
