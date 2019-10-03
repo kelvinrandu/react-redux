@@ -16,6 +16,7 @@ function login(phone, password) {
        return userService.post(phone, password)
             .then((response)=>{  
                console.log(response)
+               dispatch(setCurrentUser(response));
             });
             
     };
