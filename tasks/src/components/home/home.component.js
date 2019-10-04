@@ -1,24 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import  { GetAccessToken } from '../../helpers/auth-header';
 import { userActions } from '../../actions';
-
-const styles = theme => ({
-     root: {
-        flexGrow: 1,
-     }
-});
-
 class Home extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            tasks: undefined,
-            redirect: false
+            tasks: []
+
             
         };
     
@@ -27,14 +18,12 @@ class Home extends Component {
     componentDidMount() {
         const accessToken = GetAccessToken();
         if(accessToken){
-            const tasks = userActions.getTasks();
-            this.setState({ tasks: 'tasks' });
+            const listtasks = userActions.getTasks();
+            this.setState({ tasks: listtasks });
          
-            console.log(tasks);
         }else{
             
             this.props.history.push('/')
-            console.log(' access token absent ..');
 
         }
 
@@ -42,9 +31,13 @@ class Home extends Component {
     }
      render() {
          const { classes } = this.props;
+         console.log(this.state.tasks);
          return (
-             <div className={classes.root}>
+             <div className>
                 <h1>Home</h1>
+                <ul>
+       
+      </ul>
              </div>
          );
      }
@@ -53,11 +46,14 @@ Home.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state) {
-    return state;
+function mapState(state) {
+    const { tasks } = state;
+    return { tasks };
 }
 
-const connectedHomePage = withRouter(connect(mapStateToProps, null, null, {
-     pure: false
-})(withStyles(styles)(Home)));
-export { connectedHomePage as Home };
+const actionCreators = {
+    login: userActions.login,
+   
+};
+const connectedLoginPage = connect(mapState, actionCreators)(Home);
+export { connectedLoginPage as Home };
