@@ -13,6 +13,7 @@ class App extends Component {
                  <div>
                      <Switch>
                         <PrivateRoute exact path='/home' component={Home} />
+                        <Route exact path='/tasks' component={Home} />
                         <Route exact path='/' component={Login} />
                      </Switch>
                  </div>

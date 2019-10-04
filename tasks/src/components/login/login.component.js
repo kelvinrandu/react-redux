@@ -1,19 +1,16 @@
 import React from 'react';
-
 import { connect } from 'react-redux';
-
 import { userActions } from '../../actions';
 
 class Login extends React.Component {
     constructor(props) {
         super(props);
 
-    
-
         this.state = {
             phone: '',
             password: '',
             submitted: false
+         
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -31,13 +28,21 @@ class Login extends React.Component {
         this.setState({ submitted: true });
         const { phone, password } = this.state;
         if (phone && password) {
-            this.props.login(phone, password);
+            const loggedInStatus =  this.props.login(phone, password);
+
+            this.props.history.push("/tasks");
+          
+          
         }
+
     }
 
     render() {
         
         const { phone, password, submitted } = this.state;
+
+
+
         return (
             <div className="col-md-6 col-md-offset-3">
                 <h2>Login</h2>

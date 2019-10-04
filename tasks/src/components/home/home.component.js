@@ -11,6 +11,24 @@ const styles = theme => ({
 });
 
 class Home extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            tasks: undefined,
+            redirect: false
+            
+        };
+    
+    }
+
+    componentDidMount() {
+        // const accessToken = getAccessToken();
+        // if(!accessToken){
+        //     this.props.history.push('/')
+        // }
+        // this.props.getTasks();
+    }
      render() {
          const { classes } = this.props;
          return (

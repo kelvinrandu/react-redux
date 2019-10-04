@@ -7,17 +7,21 @@ import jwt from 'jsonwebtoken';
 
 export const userService = {
     post,
-    get,
+    getTasks,
 
 };
 
-function get(apiEndpoint){
-    return axios.get(config.baseUrl+apiEndpoint).then((response)=>{
+function getTasks(accessToken){
+
+    let apiEndpoint = '/tasks/assigned?page=1&limit=10&order=created&orderMethod=DESC';
+    
+    return axios.get(config.baseUrl+apiEndpoint, { headers: { Authorization : `Bearer ${accessToken}`} }).then((response)=>{
        return response;
     }).catch((err)=>{
        console.log(err);
     })
 }
+
 function post(phone, password){
     let apiEndpoint = '/personnel/login';
     let body = {
@@ -44,3 +48,20 @@ function post(phone, password){
 
 
 
+// axios.post(TOKEN_URL, Querystring.stringify(data))
+// .then(response => {
+//   console.log(response.data);
+//   USER_TOKEN = response.data.access_token;
+//   console.log('userresponse ' + response.data.access_token);
+// })
+// .catch((error) => {
+//   console.log('error ' + error);
+// });
+// const AuthStr = 'Bearer '.concat(USER_TOKEN);
+// axios.get(URL, { headers: { Authorization: AuthStr } }).then(response => {
+//       // If request is good...
+//       console.log(response.data);
+//     })
+//     .catch((error) => {
+//       console.log('error 3 ' + error);
+//     });

@@ -4,14 +4,15 @@ import { SET_CURRENT_USER } from '../constants';
 
 
 export const userActions = {
-    login
+    login,
+    getTasks,
+    logout
 
 };
 
 
 function login(phone, password) {
     return dispatch => {
-      
 
        return userService.post(phone, password)
             .then((response)=>{  
@@ -19,6 +20,25 @@ function login(phone, password) {
                dispatch(setCurrentUser(response));
             });
             
+    };
+
+}
+
+function getTasks() {
+    return dispatch => {
+
+       return userService.getTasks()
+            .then((response)=>{  
+               console.log(response)
+               dispatch(setCurrentUser(response));
+            });
+            
+    };
+
+}
+function logout() {
+    return dispatch => {
+ // logout function lies here           
     };
 
 }
