@@ -28,8 +28,7 @@ class Login extends React.Component {
         this.setState({ submitted: true });
         const { phone, password } = this.state;
         if (phone && password) {
-            const loggedInStatus =  this.props.login(phone, password);
-
+            this.props.login(phone, password);
             this.props.history.push("/tasks");
           
           

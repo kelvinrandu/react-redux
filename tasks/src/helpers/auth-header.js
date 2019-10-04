@@ -1,6 +1,5 @@
-export function authHeader() {
-    // return authorization header with jwt token
-    let user = JSON.parse(localStorage.getItem('user'));
-     return user;
+export function GetAccessToken() {
+    // return access token
+    return localStorage.getItem('accessToken'); 
 
 }

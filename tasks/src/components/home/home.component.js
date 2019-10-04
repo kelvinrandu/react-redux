@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-// import  { Task } from '../tasks/';
+import  { GetAccessToken } from '../../helpers/auth-header';
 const styles = theme => ({
      root: {
         flexGrow: 1,
@@ -23,11 +23,18 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        // const accessToken = getAccessToken();
-        // if(!accessToken){
-        //     this.props.history.push('/')
-        // }
-        // this.props.getTasks();
+        const accessToken = GetAccessToken();
+        if(accessToken){
+            // this.props.history.push('/')
+            console.log('access token present ..');
+        }else{
+            // this.props.getTasks();
+            this.props.history.push('/')
+            console.log(' access token absent ..');
+
+        }
+
+   
     }
      render() {
          const { classes } = this.props;
