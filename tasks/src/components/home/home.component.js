@@ -18,8 +18,10 @@ class Home extends Component {
     componentDidMount() {
         const accessToken = GetAccessToken();
         if(accessToken){
-            const listtasks = userActions.getTasks();
-            this.setState({ tasks: listtasks });
+            const listtasks = userActions.getTasks().then((value) => { 
+                this.setState({ tasks: value });
+                 });;
+
          
         }else{
             

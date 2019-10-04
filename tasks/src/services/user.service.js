@@ -18,7 +18,7 @@ function getTasks(){
     let apiEndpoint = '/tasks/assigned?page=1&limit=10&order=created&orderMethod=DESC';
     
     return axios.get(config.baseUrl+apiEndpoint, { headers: { Authorization : `Bearer ${accessToken}`} }).then((response)=>{
-       return response.data.tasks;
+       return response.data;
     }).catch((err)=>{
        console.log(err);
     })
