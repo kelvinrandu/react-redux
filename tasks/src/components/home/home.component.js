@@ -15,7 +15,6 @@ state = {
     let apiEndpoint = '/tasks/assigned?page=1&limit=10&order=created&orderMethod=DESC';
     axios.get(config.baseUrl+apiEndpoint, { headers: { Authorization : `Bearer ${accessToken}`} })
       .then(res => {
-        console.log(res.data.tasks);
         this.setState({
           tasks: res.data.tasks
         });
@@ -58,7 +57,7 @@ function mapState(state) {
 }
 
 const actionCreators = {
-    login: userActions.login,
+    login: userActions.getTasks,
    
 };
 const connectedLoginPage = connect(mapState, actionCreators)(Home);
