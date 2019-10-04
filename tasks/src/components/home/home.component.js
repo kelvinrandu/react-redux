@@ -4,6 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import  { GetAccessToken } from '../../helpers/auth-header';
+import { userActions } from '../../actions';
+
 const styles = theme => ({
      root: {
         flexGrow: 1,
@@ -25,10 +27,12 @@ class Home extends Component {
     componentDidMount() {
         const accessToken = GetAccessToken();
         if(accessToken){
-            // this.props.history.push('/')
-            console.log('access token present ..');
+            const tasks = userActions.getTasks();
+            this.setState({ tasks: 'tasks' });
+         
+            console.log(tasks);
         }else{
-            // this.props.getTasks();
+            
             this.props.history.push('/')
             console.log(' access token absent ..');
 

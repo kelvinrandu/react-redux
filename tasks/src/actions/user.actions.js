@@ -24,16 +24,10 @@ function login(phone, password) {
 
 }
 
-function getTasks() {
-    return dispatch => {
 
-       return userService.getTasks()
-            .then((response)=>{  
-               console.log(response)
-               dispatch(setCurrentUser(response));
-            });
-            
-    };
+function getTasks() {
+
+    return userService.getTasks();
 
 }
 function logout() {
