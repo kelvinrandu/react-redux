@@ -48,5 +48,3 @@ function post(phone, password){
        console.log(err);
     })
 }
-
-

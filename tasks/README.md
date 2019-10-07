@@ -16,5 +16,14 @@ Minimum requirements needed to run this application include;
 - to run the frontend(React application) navigate to react-redux/tasks/ and type the code below in your terminal
 ``` $ npm start```
 
+## LOGIN 
+- use the credentials below
+``` phone : 0722222222```
+``` password : 123456 ```
+
+## ISSUE
+- While login in for the first time you might be required to login twice 
+
+
 ## ENQUIRIES
 - for clarifications,enquiries or questions you can contact the developer through randukelvin@gmail.com

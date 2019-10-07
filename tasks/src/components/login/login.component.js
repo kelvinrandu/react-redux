@@ -29,7 +29,7 @@ class Login extends React.Component {
         const { phone, password } = this.state;
         if (phone && password) {
             this.props.login(phone, password);
-            this.props.history.push("/tasks");
+            this.props.history.push("/home");
           
           
         }

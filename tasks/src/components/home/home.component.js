@@ -6,12 +6,17 @@ import { userActions } from '../../actions';
 import config from '../../config/config';
 import axios from 'axios'
 class Home extends Component {
-state = {
-    tasks: []
-  }
-  componentDidMount(){
-    const accessToken = GetAccessToken();
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      tasks: []
+     
+    };
+
+}
+  componentDidMount(){
+    const accessToken = GetAccessToken(); 
     let apiEndpoint = '/tasks/assigned?page=1&limit=10&order=created&orderMethod=DESC';
     axios.get(config.baseUrl+apiEndpoint, { headers: { Authorization : `Bearer ${accessToken}`} })
       .then(res => {
@@ -20,6 +25,7 @@ state = {
         });
       })
   }
+
   render(){
     const { tasks } = this.state
     const taskList = tasks.length ? (

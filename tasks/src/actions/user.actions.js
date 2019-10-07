@@ -3,13 +3,13 @@ import { SET_CURRENT_USER } from '../constants';
 
 
 
+
 export const userActions = {
     login,
     getTasks,
     logout
 
 };
-
 
 function login(phone, password) {
     return dispatch => {
