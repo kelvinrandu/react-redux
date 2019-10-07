@@ -13,7 +13,7 @@ Minimum requirements needed to run this application include;
 
 ## TESTING THE APPLICATION 
 - clone [this](https://github.com/kelvinrandu/react-redux.git) repository
-- to run the frontend(React application) navigate to react-redux/tasks/ and type the code below in your terminal
+- to run the frontend(React application) navigate to react-redux/tasks/ and type the code below in your terminal.
 ``` $ npm start```
 
 ## LOGIN 
